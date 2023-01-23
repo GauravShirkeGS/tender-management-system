@@ -317,6 +317,9 @@ public class Main {
     				try {
 						List<tender> list = dao.viewAllCurrentTenders();
 						
+						if(list.size()==0) {
+							 System.out.println(ConsoleColors.BLACK_UNDERLINED+ConsoleColors.GREEN_BOLD_BRIGHT+" *****NO CURRENT TENDERS AT THIS POINT. ****** "+ConsoleColors.RESET);
+						}else {
 						 System.out.println(ConsoleColors.BLACK_UNDERLINED+ConsoleColors.GREEN_BOLD_BRIGHT+" ***** CURRENT TENDERS LIST. ****** "+ConsoleColors.RESET);
 		    				
 		    				for (tender ven : list) {
@@ -328,7 +331,7 @@ public class Main {
 		    					System.out.println(ConsoleColors.ORANGE+"Tender Base Price: "+ ven.getBasePrice()+ConsoleColors.RESET);
 		    					System.out.println(ConsoleColors.BLACK_STRIKE+"*************************************1"+ConsoleColors.RESET);
 		    				}
-						
+						}
 						
 					} catch (tenderException e) {
 						// TODO Auto-generated catch block
