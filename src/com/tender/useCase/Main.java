@@ -1,5 +1,6 @@
 package com.tender.useCase;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -342,14 +343,17 @@ public class Main {
     				continue; 
     			 }
     			 else if(pointer==2) {
-    				 
-    				 System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT+"Enter tender Id : "+ConsoleColors.RESET);
-    	  	    	 int tid = sc.nextInt();
+    				
     	  	    	 
-    	  	    	 System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT+"Enter bid Price for tender : "+ConsoleColors.RESET);
-    	  	    	 int offer = sc.nextInt();
+    	  	    	
     	  	    	 
     	  	    	 try {
+    	  	    		 
+        				 System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT+"Enter tender Id : "+ConsoleColors.RESET);
+        	  	    	 int tid = sc.nextInt();
+        	  	    	 
+        	  	    	 System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT+"Enter bid Price for tender : "+ConsoleColors.RESET);
+        	  	    	 int offer = sc.nextInt();
 						String msg = dao.placeBidAgainsTender(tid, offer);
 						 System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+msg+ConsoleColors.RESET);
 						
@@ -357,7 +361,10 @@ public class Main {
 						// TODO Auto-generated catch block
 						System.out.println(ConsoleColors.RED_BOLD_BRIGHT+e.getMessage()+ConsoleColors.RESET);
 					}
-    	  	    	 
+    	  	    	 catch(InputMismatchException e) {
+    	  	    		System.out.println(ConsoleColors.RED_BOLD_BRIGHT+"change something.."+ConsoleColors.RESET);
+    	  	    		 }
+    			 
     	  	    	 continue;
     			 }
     			 else if(pointer==3) {
@@ -366,19 +373,26 @@ public class Main {
     	  	    	 
     	  	    	 try {
 						String msg = dao.viewStatusofBid(tid);
+						if(msg==null) {
+							throw new NullPointerException("Tender Result is not anounced... ");
+						}
 						
 						if(msg.equals("Accepted")) {
 							 System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+"your bid for tender Id: "+tid+" is get "+msg+ConsoleColors.RESET);
 						}else if(msg.equals("Rejected")) {
 							System.out.println(ConsoleColors.RED_BOLD_BRIGHT+"your bid for tender Id: "+tid+" is get "+msg+ConsoleColors.RESET);
 						}else {
-							 System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT+"Tender Result is not anounced... "+ConsoleColors.RESET);
+//							throw new NullPointerException("Tender is in process..");
+//							 System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT+"Tender Result is not anounced... "+ConsoleColors.RESET);/
 						}
 					} catch (tenderException e) {
 						// TODO Auto-generated catch block
+//						throw new NullPointerException("Tender is in process..");
 						System.out.println(ConsoleColors.RED_BOLD_BRIGHT+e.getMessage()+ConsoleColors.RESET);
 					}
-    				 
+    				 catch (NullPointerException e) {
+    					 System.out.println(ConsoleColors.RED_BOLD_BRIGHT+e.getMessage()+ConsoleColors.RESET);
+    				 }
     				 
     				 
     				 continue;

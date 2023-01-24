@@ -15,5 +15,5 @@ public interface venderDao {
 	public List<tender> viewAllCurrentTenders() throws tenderException;
 	public String placeBidAgainsTender(int tenderId,int offer) throws tenderException;
 	public String viewStatusofBid(int tenderId)throws tenderException;
-	public List<bids> viewOwnBidHistory() throws venderException;
+	public List<bids> viewOwnBidHistory() throws venderException ;
 }
