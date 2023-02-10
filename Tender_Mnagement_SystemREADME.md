@@ -18,9 +18,9 @@
         1. Administrator needs to logoin with his username and password.
         2. He have some authorities to do some changes as below:
         i. View all vendors            
-       ii. Create new tenders          
-      iii. View all tenders            
-       iv. View all bids of tender     
+        ii. Create new tenders          
+        iii. View all tenders            
+        iv. View all bids of tender     
         v. Assign tender to the Vendor 
          
   ## Vender Role:
