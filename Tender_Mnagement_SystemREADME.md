@@ -27,9 +27,9 @@
   1. Venders can register by giving their detailes and making account and need to login for use all properties.
   2. Functionalities for vendors:
    i. View all current tenders    
-  ii. Place a bid to tender       
- iii. View status of bid          
-  iv. View bid history    
+   ii. Place a bid to tender       
+  iii. View status of bid          
+   iv. View bid history    
    
    
    
