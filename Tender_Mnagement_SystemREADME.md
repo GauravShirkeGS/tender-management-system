@@ -6,7 +6,7 @@
            From administrator side we can create the tenders. Assign tenders to suitable vendors.
            You can find your all biding history.
     
-  TechStack : JAVA | MySQL.
+###  TechStack : JAVA | MySQL.
   
    
     
