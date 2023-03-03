@@ -22,19 +22,24 @@ public class Main {
      
      System.out.println(ConsoleColors.BLACK_UNDERLINED+ConsoleColors.RED_BOLD_BRIGHT+" ********** WELCOME TO TENDER MANAGEMENT APPLICATION ********** "+ConsoleColors.RESET);
  	
+//   =============================  here i give three option to operate application =========================
      
      System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "+---------------------------+" + "\n"
                                                 + "| 1. Login As Administrator |" + "\n"
     		                                    + "| 2. Login as Vender        |" + "\n"
                                                 + "| 3. Exit                   |" + "\n"
     		                                    + "+---------------------------+" + ConsoleColors.RESET);
-     
+//    selecting variable to operate application ===========================
      int start = sc.nextInt();
+     
      
      if(start==1) {
     	 
+//    	 ================================= Administator logics and methods ==============================
+    	 
     	 System.out.println(ConsoleColors.BLACK_UNDERLINED+ConsoleColors.RED_BOLD_BRIGHT+" ********** WELCOME ADMINISTRATOR ********** "+ConsoleColors.RESET);
      	
+//    	========================== addministrator login logic ===============================
     	 
     	 while(true) {
     	 System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT+"ENTER USERNAME : "+ConsoleColors.RESET);
@@ -59,6 +64,8 @@ public class Main {
     	 } 
     	 
     	 while(true) {
+    		 
+//    		 ====================== administrator methods after login ======================
     	 
     	 System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "+------------------------------- +" + "\n"
                                                                 + "| 1. View all vendors            |" + "\n"
@@ -71,6 +78,9 @@ public class Main {
     	 
     	  int pointer = sc.nextInt();
     	  administratorDao dao = new administratorDaoImpl();
+    	  
+//    	  ======================= view all venders method ==========================
+    	  
     	  if(pointer ==1) {
     		 try {
     			 System.out.println(ConsoleColors.BLACK_UNDERLINED+ConsoleColors.GREEN_BOLD_BRIGHT+" ****** TOTAL VENDORS REGISTERED TILL NOW. ****** "+ConsoleColors.RESET);
@@ -93,6 +103,9 @@ public class Main {
     		 continue;
     	  }
     	  else if (pointer==2) {
+    		  
+//    		  ============================== creating new tenders logic ======================
+    		  
     		  tender td = new tender();
     		  
     		    System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT+"Enter tender Id : "+ConsoleColors.RESET);
@@ -132,6 +145,9 @@ public class Main {
     		  continue;
     	  }
     	  else if(pointer==3) {
+    		  
+//    		================================  View all tenders method ================================
+                     
     			 try {
         			 System.out.println(ConsoleColors.BLACK_UNDERLINED+ConsoleColors.GREEN_BOLD_BRIGHT+" ****** TOTAL TENDERS LIST. ****** "+ConsoleColors.RESET);
     				List<tender> list = dao.viewAllTenders();
@@ -154,6 +170,9 @@ public class Main {
         		 continue;
     	  }
     	  else if(pointer==4) {
+    		  
+//    	=========================== View all bids of tender method ============================== 
+                     
     		  try {
     			
     			  System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT+"Enter tender Id : "+ConsoleColors.RESET);
@@ -180,6 +199,10 @@ public class Main {
      		 continue;
  	  }  
     	  else if(pointer==5) {
+    		  
+//    		  ============================== Assign tender to the Vendor method =============================
+    		  
+    		  
     		  System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT+"Enter tender Id : "+ConsoleColors.RESET);
   	    	 int tenderId = sc.nextInt();
   	    	 
@@ -206,6 +229,9 @@ public class Main {
     	 }
     	 
      }
+     
+//     ============================================ Venders methods logic ======================================
+     
      else if(start ==2) {
     	  
     	boolean flag = true;
@@ -213,8 +239,7 @@ public class Main {
     	 System.out.println(ConsoleColors.BLACK_UNDERLINED+ConsoleColors.RED_BOLD_BRIGHT+" ********** WELCOME VENDOR ********** "+ConsoleColors.RESET);
     	
     		 while(true) {
-    			 
-    			
+  			
     			 
     			 System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "+---------------------------+" + "\n"
     	                 + "| 1. Register new vendor    |" + "\n"
@@ -226,6 +251,9 @@ public class Main {
     	    	 venderDao dao = new venderDaoImpl();
     			 
     			 if(gs==1) {
+    				 
+//    				 ========================== registrating logic of vendore ========================
+    						 
     				 System.out.println(ConsoleColors.BLACK_UNDERLINED+ConsoleColors.GREEN_BOLD_BRIGHT+" ****** Register vendor details. ******* "+ConsoleColors.RESET); 
     				 
     				 vender ven = new vender();
@@ -260,6 +288,8 @@ public class Main {
     		 }
     			 else if(gs==2) {
     				 
+//    				============================= After registration login logic of vendors ====================
+    				 
     				 System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT+"Enter username : "+ConsoleColors.RESET);
     	  	    	 String username = sc.next();
     	  	    	 
@@ -291,6 +321,8 @@ public class Main {
     	  	    	break;
     			 }
     			 else {
+//    				 ============== exceptoin for wrong details of vender ======================
+//    				 if vendor give wrong detailes then flag will break the loop ==========
     				 flag = false;
     				 System.out.println(ConsoleColors.BLACK_UNDERLINED+ConsoleColors.RED_BOLD_BRIGHT+" ********** THANK YOU FOR USING THIS APPLICATION ********** "+ConsoleColors.RESET);
     				 break;
@@ -299,6 +331,8 @@ public class Main {
     	 }
     	 
     	 if(flag) {
+    		 
+//    		 =================== Vendor logged suceesfully then vender methods ===========================
     		 
     		 while(true) {
     			
@@ -314,6 +348,8 @@ public class Main {
     			 venderDao dao = new venderDaoImpl();
     			 
     			 if(pointer==1) {
+    				 
+//    				=========================== View all current tenders method ==========================  
     				 
     				try {
 						List<tender> list = dao.viewAllCurrentTenders();
@@ -344,7 +380,7 @@ public class Main {
     			 }
     			 else if(pointer==2) {
     				
-    	  	    	 
+//    	  	    	 =================== Place a bid to tender method =============================
     	  	    	
     	  	    	 
     	  	    	 try {
@@ -368,6 +404,9 @@ public class Main {
     	  	    	 continue;
     			 }
     			 else if(pointer==3) {
+    				 
+//    				 =========================== View status of bid  =====================
+    				 
     				 System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT+"Enter tender Id : "+ConsoleColors.RESET);
     	  	    	 int tid = sc.nextInt();
     	  	    	 
@@ -398,6 +437,8 @@ public class Main {
     				 continue;
     			 }
     			 else if(pointer==4) {
+    				 
+//    				=========================== View bid history ======================
     				 
     				 try {
     	    			  
@@ -437,6 +478,7 @@ public class Main {
     	 
     	 
      }
+//     =================== exit value method =======================
      else  {
     	 System.out.println(ConsoleColors.BLACK_UNDERLINED+ConsoleColors.RED_BOLD_BRIGHT+" ********** THANK YOU FOR USING THIS APPLICATION ********** "+ConsoleColors.RESET);
      }
