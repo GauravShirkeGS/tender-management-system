@@ -25,14 +25,14 @@ public class DBUtil {
 		Connection conn = null;
 		
 		try {
-			Class.forName(driverName);
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		String url = "jdbc:mysql://localhost:3306/Tenderdb";
+		String url = "jdbc:mysql://localhost:3306/Tenderdb";
 		try {
-			conn = DriverManager.getConnection(url,username,password);
+			conn = DriverManager.getConnection(url,"root","Vaishali@65");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
