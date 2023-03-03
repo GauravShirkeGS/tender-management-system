@@ -18,6 +18,8 @@ import com.tender.models.vender;
 public class venderDaoImpl implements venderDao {
 	
 	private static int existingvenderId;
+	
+//	=============== registration of new vender =================
 
 	@Override
 	public String registerNewVender(vender ven) throws venderException {
@@ -48,6 +50,8 @@ public class venderDaoImpl implements venderDao {
 		return msg;
 	}
 
+//	========================  login as vender by username and password ================
+	
 	@Override
 	public vender loginAsVender(String username, String Password) throws venderException {
 		vender ven = null;
@@ -83,6 +87,8 @@ public class venderDaoImpl implements venderDao {
 		
 		return ven;
 	}
+	
+
 
 	@Override
 	public List<tender> viewAllCurrentTenders() throws tenderException {

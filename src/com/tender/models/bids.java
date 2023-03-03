@@ -1,5 +1,7 @@
 package com.tender.models;
 
+import java.util.regex.Pattern;
+
 public class bids {
 	 private int tid;
 	 private String property;
