@@ -7,7 +7,8 @@
            You can find your all biding history.
     
 ## ER Diagram :
-
+<img style="" src="Screenshot%20(81).png">
+<a href="https://github.com/GauravShirkeGS/tender-management-system/blob/master/assets/Screenshot%20(81).png"> </a>
     
 ###  TechStack :
                  Core JAVA | MySQL database | JDBC.
