@@ -13,26 +13,34 @@ public class DBUtil {
 	private static String password;
 	
 	static {
-		ResourceBundle rb = ResourceBundle.getBundle("dbDetailes");
+		ResourceBundle rb = ResourceBundle.getBundle("dbDetailes");	
 		driverName = rb.getString("db.drivarName");
 		url = rb.getString("db.url");
-		username = rb.getString("db.username");
+	    username = rb.getString("db.username");
 		password = rb.getString("db.password");
 		
 	}
 	
+	
 	public static Connection provideConnection() {
 		Connection conn = null;
 		
+		
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			Class.forName(driverName);	
+		}catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 		}
-		String url = "jdbc:mysql://localhost:3306/Tenderdb";
+		
+		
+//		String url = "jdbc:mysql://localhost:3306/Tenderdb";
 		try {
-			conn = DriverManager.getConnection(url,"root","Vaishali@65");
+//			System.out.println(driverName);
+//			System.out.println(url);
+//			System.out.println(username);
+//			System.out.println(password);
+			conn = DriverManager.getConnection(url,username,password);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
