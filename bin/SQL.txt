@@ -1,0 +1,31 @@
+
+Administrator methods SQL Queries :
+
+1) insert into tender(tid,property,location,startDate,endDate,basePrice) values (?,?,?,?,?,?);
+
+2) insert into bids(tid,offer) values (?,?);
+
+3) select * from tender
+
+4) select * from bids b INNER JOIN vender v ON b.vid = v.vid AND tid = ?;
+
+5) update bids set bidStatus = 'Accepted' where vid = ? AND tid = ? ;
+
+6) update bids set bidStatus = 'Rejected' where vid != ? AND tid = ?
+
+
+  Vender methods SQL Queries :
+  
+ 1) insert into vender(vname,email,password,company)values (?,?,?,?);
+ 
+ 2) select * from vender where email =? AND password = ?;
+ 
+ 3) select * from tender where tid = (select tid from bids where bidStatus IS NULL;
+ 
+ 4) insert into bids(tid,vid,offer) values(?,?,?);
+ 
+ 5) delete from bids where tid= ? AND vid IS NULL;
+ 
+ 6) select * from bids where vid= ? AND tid= ?;
+ 
+ 7) select * from bids b INNER JOIN vender v ON b.vid = v.vid AND v.vid = ?;

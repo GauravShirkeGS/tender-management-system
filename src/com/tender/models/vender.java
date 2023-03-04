@@ -1,5 +1,7 @@
 package com.tender.models;
 
+import java.util.List;
+
 public class vender {
 	 private int vid;
 	 private String vName;
