@@ -1,5 +1,7 @@
 package com.tender.venderDao;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,11 +21,39 @@ public class venderDaoImpl implements venderDao {
 	
 	private static int existingvenderId;
 	
+	
+//	======================= Hashing algorithem for password =================
+	
+	public static String hashingAlgorithem(String password) {
+		
+		try {
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA");
+			messageDigest.update(password.getBytes());
+			byte[] byteArray = messageDigest.digest();
+			StringBuilder sb = new StringBuilder();
+			for(byte b:byteArray) {
+				sb.append(String.format("%02x", b));
+			}
+			return sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "";
+		
+	}
+	
 //	=============== registration of new vender =================
 
 	@Override
 	public String registerNewVender(vender ven) throws venderException {
 		String msg = "";
+//		hashing the password step ====
+		ven.setPassword(hashingAlgorithem(ven.getPassword()));
+		if(ven.getPassword()=="") {
+			throw new venderException("Wrong password selection give right password.");
+		}
 		
 		try(Connection conn = DBUtil.provideConnection()) {
 			PreparedStatement ps = conn.prepareStatement("insert into vender(vname,email,password,company)values (?,?,?,?)");
@@ -55,6 +85,8 @@ public class venderDaoImpl implements venderDao {
 	@Override
 	public vender loginAsVender(String username, String Password) throws venderException {
 		vender ven = null;
+		
+		Password = hashingAlgorithem(Password);
 		
 		try(Connection conn = DBUtil.provideConnection()) {
 			PreparedStatement ps = conn.prepareStatement("select * from vender where email =? AND password = ?");
