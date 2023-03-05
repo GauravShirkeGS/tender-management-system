@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import com.tender.DBUtil.DBUtil;
 import com.tender.exceptions.tenderException;
@@ -44,6 +45,27 @@ public class venderDaoImpl implements venderDao {
 		
 	}
 	
+//	=================== email validation method ========
+	
+	public static String emailValidation(String email) {
+		if(email == null || email.isEmpty()) {
+			return "Invalid";
+		}
+		
+		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+		"[a-zA-Z0-9_+&*-]+)*@"+
+				"(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+		
+		Pattern pattern = Pattern.compile(emailRegex);
+		if(pattern.matcher(email).matches()) {
+			return "Valid";		
+			}else {
+				return "Invalid";
+			}
+		                    
+	}
+	
+	
 //	=============== registration of new vender =================
 
 	@Override
@@ -51,6 +73,9 @@ public class venderDaoImpl implements venderDao {
 		String msg = "";
 //		hashing the password step ====
 		ven.setPassword(hashingAlgorithem(ven.getPassword()));
+		if(emailValidation(ven.getEmail())=="Invalid") {
+			throw new venderException("Wrong email address plese provide right syntax of email.");
+		}
 		if(ven.getPassword()=="") {
 			throw new venderException("Wrong password selection give right password.");
 		}
@@ -85,6 +110,9 @@ public class venderDaoImpl implements venderDao {
 	@Override
 	public vender loginAsVender(String username, String Password) throws venderException {
 		vender ven = null;
+		if(emailValidation(username)=="Invalid") {
+			throw new venderException("Wrong email address plese provide right syntax of email.");
+		}
 		
 		Password = hashingAlgorithem(Password);
 		
