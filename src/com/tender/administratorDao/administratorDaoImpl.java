@@ -1,5 +1,7 @@
 package com.tender.administratorDao;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,9 +20,36 @@ import com.tender.models.tender;
 import com.tender.models.vender;
 
 public class administratorDaoImpl implements administratorDao{
+	
+//	======================= Hashing algorithem for password =================
+	
+	public static String hashingAlgorithem(String password) {
+		
+		try {
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA");
+			messageDigest.update(password.getBytes());
+			byte[] byteArray = messageDigest.digest();
+			StringBuilder sb = new StringBuilder();
+			for(byte b:byteArray) {
+				sb.append(String.format("%02x", b));
+			}
+			return sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "";
+		
+	}
 
 	@Override
 	public String loginAsAdministrator(String username, String password) throws AdministratorException {
+		
+		if(hashingAlgorithem(password)!= hashingAlgorithem("12345")) {
+			throw new AdministratorException("Password does not match please try again...");
+		}
+		
 		String msg = "";
 		if(username.equals("gaurav@611")) { 
 			if( password.equals("12345")) {

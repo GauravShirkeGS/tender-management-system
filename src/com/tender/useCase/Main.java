@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import com.tender.administratorDao.administratorDao;
 import com.tender.administratorDao.administratorDaoImpl;
+import com.tender.exceptions.AdministratorException;
 import com.tender.exceptions.tenderException;
 import com.tender.exceptions.venderException;
 import com.tender.models.bids;
@@ -53,7 +54,7 @@ public class Main {
     		 
 			String msg = dao.loginAsAdministrator(username ,password);
 			System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+msg+ConsoleColors.RESET);
-		} catch (tenderException e) {
+		} catch (AdministratorException e) {
 			// TODO Auto-generated catch block
 			System.out.println(ConsoleColors.RED_BOLD_BRIGHT+e.getMessage()+ConsoleColors.RESET);
 			
