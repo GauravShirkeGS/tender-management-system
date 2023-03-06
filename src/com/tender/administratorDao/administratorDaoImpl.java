@@ -10,6 +10,7 @@ import java.util.List;
 import javax.security.auth.login.AccountNotFoundException;
 
 import com.tender.DBUtil.DBUtil;
+import com.tender.exceptions.AdministratorException;
 import com.tender.exceptions.tenderException;
 import com.tender.exceptions.venderException;
 import com.tender.models.bids;
@@ -19,14 +20,14 @@ import com.tender.models.vender;
 public class administratorDaoImpl implements administratorDao{
 
 	@Override
-	public String loginAsAdministrator(String username, String password) throws tenderException {
+	public String loginAsAdministrator(String username, String password) throws AdministratorException {
 		String msg = "";
 		if(username.equals("gaurav@611")) { 
 			if( password.equals("12345")) {
 			msg = "Welcome Administrator...";
 			}
 		}else
-			throw new tenderException("Wrong credentials please try again...");
+			throw new AdministratorException("Wrong credentials please try again...");
 		
 		
 		return msg;

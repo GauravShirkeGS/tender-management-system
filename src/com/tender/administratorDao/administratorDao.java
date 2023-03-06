@@ -2,6 +2,7 @@ package com.tender.administratorDao;
 
 import java.util.List;
 
+import com.tender.exceptions.AdministratorException;
 import com.tender.exceptions.tenderException;
 import com.tender.exceptions.venderException;
 import com.tender.models.bids;
@@ -12,7 +13,7 @@ public interface administratorDao {
 //  static String username = "gaurav@611";
 //  static String password = "12345";
   
-  public String loginAsAdministrator(String username , String password)throws tenderException;
+  public String loginAsAdministrator(String username , String password)throws AdministratorException;
   
   public List<vender> viewAllVender()throws venderException;
   
