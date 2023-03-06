@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.security.auth.login.AccountNotFoundException;
 
@@ -42,12 +43,37 @@ public class administratorDaoImpl implements administratorDao{
 		return "";
 		
 	}
+	
+	
+//	=================== email validation method ========
+			
+			public static String emailValidation(String email) {
+				if(email == null || email.isEmpty()) {
+					return "Invalid";
+				}
+				
+				String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+				"[a-zA-Z0-9_+&*-]+)*@"+
+						"(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+				
+				Pattern pattern = Pattern.compile(emailRegex);
+				if(pattern.matcher(email).matches()) {
+					return "Valid";		
+					}else {
+						return "Invalid";
+					}
+				                    
+			}
 
 	@Override
 	public String loginAsAdministrator(String username, String password) throws AdministratorException {
 		
 		if(hashingAlgorithem(password)!= hashingAlgorithem("12345")) {
 			throw new AdministratorException("Password does not match please try again...");
+		}
+		
+		if(emailValidation(username)=="Invalid") {
+			throw new AdministratorException("username does not match please try again...");
 		}
 		
 		String msg = "";
@@ -61,6 +87,8 @@ public class administratorDaoImpl implements administratorDao{
 		
 		return msg;
 	}
+	
+	
 
 	@Override
 	public List<vender> viewAllVender() throws venderException {
